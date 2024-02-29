@@ -1,86 +1,55 @@
-<script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
+<script lang="ts">
+import Form from './views/Form.vue';
+import TestForm from './views/TestForm.vue';
+import StepOne from './components/StepOne.vue';
+import StepTwo from './components/StepTwo.vue';
+import StepThree from './components/StepThree.vue';
+export default {
+  components: {
+    StepOne,
+    StepTwo,
+    StepThree,
+    Form,
+    TestForm,
+  },
+  data() {
+    return {
+      currentStep: 0
+    };
+  },
+  methods: {
+    nextStep() {
+    },
+    prevStep() {
+    },
+    submitForm() {
+      // Ваша логика отправки данных формы
+    }
+  }
+};
 </script>
 
 <template>
   <div id="app">
-    <header>
-      <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-
-      <div class="wrapper">
-        <HelloWorld msg="You did it!" />
-
-        <nav>
-          <router-link to="/">Home</router-link>
-          <router-link to="/about">About</router-link>
-        </nav>
-      </div>
-    </header>
+    <form class="container">
+      <!-- <StepOne />
+      <StepTwo />
+      <StepThree /> -->
+      <Form />
+    </form>
 
     <router-view />
   </div>
 </template>
 
 <style scoped>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-nav {
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
-}
-
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
+  height: 100vh;
+  background-color: #343333;
+  margin: 0 auto;
 }
 </style>
