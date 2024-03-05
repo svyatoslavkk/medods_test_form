@@ -5,6 +5,8 @@ import router from "./router";
 
 import "./assets/base.scss";
 
+Vue.config.devtools = true;
+
 new Vue({
   router,
   render: (h) => h(App),
