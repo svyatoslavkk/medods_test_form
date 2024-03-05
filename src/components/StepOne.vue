@@ -1,17 +1,27 @@
 <script lang="ts">
-export default {
-  data() {
-    return {
-      lastName: '',
-      firstName: '',
-      middleName: '',
-      dateBirth: '',
-      phoneNumber: '',
-      gender: '',
-      clients: [],
-      doctor: '',
-    };
-  }
+import { reactive } from "vue";
+import { required } from "@vuelidate/validators";
+
+const formData = reactive({
+  lastName: "",
+  firstName: "",
+  middleName: "",
+  dateBirth: "",
+  phoneNumber: "",
+  gender: "",
+  clients: [],
+  doctor: "",
+});
+
+const rules = {
+  lastName: { required },
+  firstName: { required },
+  middleName: { required },
+  dateBirth: { required },
+  phoneNumber: { required },
+  gender: { required },
+  clients: { required },
+  doctor: { required },
 };
 </script>
 
@@ -21,27 +31,27 @@ export default {
 
     <span class="input-span">
       <label for="last-name" class="label">Фамилия</label>
-      <input type="text" name="last-name" id="last-name">
+      <input type="text" name="last-name" id="last-name" />
     </span>
 
     <span class="input-span">
       <label for="first-name" class="label">Имя</label>
-      <input type="text" name="first-name" id="first-name">
+      <input type="text" name="first-name" id="first-name" />
     </span>
 
     <span class="input-span">
       <label for="middle-name" class="label">Отчество</label>
-      <input type="text" name="middle-name" id="middle-name">
+      <input type="text" name="middle-name" id="middle-name" />
     </span>
 
     <span class="input-span">
       <label for="middle-name" class="label">Дата рождения</label>
-      <input type="date" name="middle-name" id="middle-name">
+      <input type="date" name="middle-name" id="middle-name" />
     </span>
 
     <span class="input-span">
       <label for="phone-number" class="label">Номер телефона</label>
-      <input type="tel" name="phone-number" id="phone-number">
+      <input type="tel" name="phone-number" id="phone-number" />
     </span>
 
     <span class="input-span">
@@ -63,17 +73,17 @@ export default {
 
     <span class="input-span">
       <label for="attending-doctor" class="label">Лечащий врач</label>
-      <select id="attending-doctor" name="attending-doctor" >
+      <select id="attending-doctor" name="attending-doctor">
         <option value="Иванов">Иванов</option>
         <option value="Захаров">Захаров</option>
         <option value="Чернышева">Чернышева</option>
       </select>
     </span>
-        
+
     <span class="input-span">
       <div class="flex-content">
         <label>
-          <input type="checkbox" id="no-sms" name="no-sms">
+          <input type="checkbox" id="no-sms" name="no-sms" />
         </label>
         <label for="no-sms" class="label">Не отправлять СМС</label>
       </div>
@@ -81,6 +91,4 @@ export default {
   </fieldset>
 </template>
 
-<style>
-
-</style>
+<style></style>

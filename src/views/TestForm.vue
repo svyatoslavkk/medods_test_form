@@ -4,39 +4,64 @@ export default {
     return {
       formSteps: [
         {
-          title: 'Шаг 1: Личная информация',
+          title: "Шаг 1: Личная информация",
           fields: [
-            { id: 'last-name', label: 'Фамилия', type: 'text', required: true },
-            { id: 'first-name', label: 'Имя', type: 'text', required: true },
-            { id: 'middle-name', label: 'Отчество', type: 'text', required: true },
-            { id: 'birthdate', label: 'Дата рождения', type: 'date', required: true },
-            { id: 'phone-number', label: 'Номер телефона', type: 'tel', required: true },
-          ]
+            { id: "last-name", label: "Фамилия", type: "text", required: true },
+            { id: "first-name", label: "Имя", type: "text", required: true },
+            {
+              id: "middle-name",
+              label: "Отчество",
+              type: "text",
+              required: true,
+            },
+            {
+              id: "birthdate",
+              label: "Дата рождения",
+              type: "date",
+              required: true,
+            },
+            {
+              id: "phone-number",
+              label: "Номер телефона",
+              type: "tel",
+              required: true,
+            },
+          ],
         },
         {
-          title: 'Шаг 2: Контактная информация',
+          title: "Шаг 2: Контактная информация",
           fields: [
-            { id: 'email', label: 'Email', type: 'email', required: true },
-            { id: 'phone', label: 'Телефон', type: 'tel', required: true }
-          ]
+            { id: "email", label: "Email", type: "email", required: true },
+            { id: "phone", label: "Телефон", type: "tel", required: true },
+          ],
         },
         {
-          title: 'Шаг 3: Пароль',
+          title: "Шаг 3: Пароль",
           fields: [
-            { id: 'password', label: 'Пароль', type: 'password', required: true },
-            { id: 'confirm-password', label: 'Подтвердите пароль', type: 'password', required: true }
-          ]
-        }
+            {
+              id: "password",
+              label: "Пароль",
+              type: "password",
+              required: true,
+            },
+            {
+              id: "confirm-password",
+              label: "Подтвердите пароль",
+              type: "password",
+              required: true,
+            },
+          ],
+        },
       ],
       formData: {
-        'first-name': '',
-        'last-name': '',
-        'email': '',
-        'phone': '',
-        'password': '',
-        'confirm-password': ''
+        "first-name": "",
+        "last-name": "",
+        email: "",
+        phone: "",
+        password: "",
+        "confirm-password": "",
       },
-      currentStep: 0
+      currentStep: 0,
     };
   },
   methods: {
@@ -52,96 +77,58 @@ export default {
     },
     submitForm() {
       // Ваша логика отправки данных формы
-    }
-  }
+    },
+  },
 };
 </script>
 
 <template>
   <form @submit.prevent="submitForm" id="multistep-form" class="form-container">
-    <fieldset v-for="(step, index) in formSteps" :key="index" v-show="currentStep === index">
+    <fieldset
+      v-for="(step, index) in formSteps"
+      :key="index"
+      v-show="currentStep === index"
+    >
       <h3>{{ step.title }}</h3>
       <div v-for="field in step.fields" :key="field.id">
         <label :for="field.id">{{ field.label }}:</label>
-        <input :type="field.type" :id="field.id" :name="field.id" v-model="formData[field.id]" :required="field.required" />
+        <input
+          :type="field.type"
+          :id="field.id"
+          :name="field.id"
+          v-model="formData[field.id]"
+          :required="field.required"
+        />
       </div>
     </fieldset>
     <div class="flex-content">
-      <input v-if="currentStep > 0" type="button" class="prev-button" @click="prevStep" :data-step="currentStep" value="Назад" />
-      <input v-if="currentStep < formSteps.length - 1" type="button" class="next-button" @click="nextStep" :data-step="currentStep" value="Далее" />
-      <input v-else type="submit" class="next-button" :data-step="currentStep" value="Отправить" />
+      <input
+        v-if="currentStep > 0"
+        type="button"
+        class="prev-button"
+        @click="prevStep"
+        :data-step="currentStep"
+        value="Назад"
+      />
+      <input
+        v-if="currentStep < formSteps.length - 1"
+        type="button"
+        class="next-button"
+        @click="nextStep"
+        :data-step="currentStep"
+        value="Далее"
+      />
+      <input
+        v-else
+        type="submit"
+        class="next-button"
+        :data-step="currentStep"
+        value="Отправить"
+      />
     </div>
   </form>
 </template>
 
 <style>
-.form-container {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  background-color: #525050;
-  border: 2px solid #6c6868;
-  border-radius: 5px;
-  padding: 20px;
-  width: 100%;
-  margin: 0 auto;
-}
 
-.flex-content {
-  display: flex;
-  gap: 0.5rem;
-  align-items: center;
-  justify-content: center;
-}
-
-fieldset {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  border: 2px solid #6c6868;
-}
-
-legend {
-  font-weight: 600;
-  font-size: 18px;
-  color: #ddd;
-}
-
-.label {
-  align-self: flex-start;
-  color: #58BC82;
-  font-weight: 600;
-}
-
-input, 
-select,
-input[type="button"],
-input[type="submit"] {
-  border-radius: 0.5rem;
-  padding: 0.5rem 0.33rem;
-  width: 100%;
-  border: none;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  background-color: #efefef;
-  border: 2px solid #6c6868;
-}
-
-input[type="button"],
-input[type="submit"] {
-  font-weight: 600;
-  justify-content: center;
-}
-
-input[type="button"]:hover,
-input[type="submit"]:hover {
-  background-color: #d8d5d5;
-}
-
-@media (min-width: 1024px) {
-  fieldset {
-    min-width: 400px;
-  }
-}
 </style>

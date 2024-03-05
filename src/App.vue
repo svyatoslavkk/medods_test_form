@@ -1,40 +1,15 @@
 <script lang="ts">
-import Form from './views/Form.vue';
-import TestForm from './views/TestForm.vue';
-import StepOne from './components/StepOne.vue';
-import StepTwo from './components/StepTwo.vue';
-import StepThree from './components/StepThree.vue';
+import Form from "./views/Form.vue";
 export default {
   components: {
-    StepOne,
-    StepTwo,
-    StepThree,
     Form,
-    TestForm,
   },
-  data() {
-    return {
-      currentStep: 0
-    };
-  },
-  methods: {
-    nextStep() {
-    },
-    prevStep() {
-    },
-    submitForm() {
-      // Ваша логика отправки данных формы
-    }
-  }
 };
 </script>
 
 <template>
   <div id="app">
     <form class="container">
-      <!-- <StepOne />
-      <StepTwo />
-      <StepThree /> -->
       <Form />
     </form>
 
